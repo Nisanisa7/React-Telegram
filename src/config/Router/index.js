@@ -1,4 +1,6 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import io from 'socket.io-client'
 
 import React from 'react'
 import {
@@ -13,18 +15,44 @@ import {
 
 
 } from "../../pages";
+import PublicRoute from "./PublicRoute";
+import PrivateRoute from "./PrivateRoute";
+// PrivateRoute
+// PublicRoute
+
+
 const Routes = () => {
+    
+    const [socket, setSocket] = useState(null)
+    const setupSocket = ()=>{
+      const token = localStorage.getItem('token')
+      
+      // ini saya gunakan ketika browser di refresh
+      if(token && !socket){
+        const resultSocket = io('http://localhost:4000',{
+          query: {
+            token: localStorage.getItem('token')
+          }
+        })
+        setSocket(resultSocket)
+      }
+    }
+  
+    useEffect(() => {
+      setupSocket()
+    }, [])
+
     return (
         <Router>
             <Switch>
-                <Route exact path="/login" component={ Login } />
-                <Route path="/register" component={ Register } />
-                <Route path="/reset" component={ForgotPassword}/>
-                <Route path="/success" component={EmailVerif}/>
-                <Route path="/profile" component={Profile}/>
-                
-                <Route path="/" component={Home}/>
-            
+                <PublicRoute exact path="/login" component={Login} setSocket={setSocket} />
+                <PublicRoute path="/register" component={Register} />
+                <PublicRoute path="/reset" component={ForgotPassword} />
+                <Route path="/success" component={EmailVerif} />
+                <PrivateRoute path="/profile" component={Profile} />
+
+                <PrivateRoute path="/" component={Home} socket={socket}/>
+
             </Switch>
         </Router>
     )

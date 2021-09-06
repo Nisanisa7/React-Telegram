@@ -7,7 +7,7 @@ import { Button, Inputfield } from '../../components/atoms';
 import { loginUser } from '../../config/Redux/actions/authAction';
 
 
-const Login = () => {
+const Login = ({setSocket}) => {
 
     const history = useHistory()
     const dispatch = useDispatch()
@@ -23,7 +23,10 @@ const Login = () => {
         })
     }
     const handleLogin = () =>{
-        dispatch(loginUser(form, history))
+        dispatch(loginUser(form, history, setSocket))
+        // .then(()=>{
+
+        // })
     }
     useEffect(() => {
         document.title = 'Telegram | Login';

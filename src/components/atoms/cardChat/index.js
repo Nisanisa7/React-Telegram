@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const CardChat = ({className, avatar, username, preview, time}) => {
+const CardChat = ({className, avatar, username, preview, time, key, onClick}) => {
     return (
-        <Styles className={className}>
+        <Styles className={className} key={key} onClick={onClick}>
             <div className="left">
                 <div className="avatar-wrapper">
                     <img src={avatar} alt="User 1" />
@@ -27,7 +27,7 @@ const Styles = styled.div`
 box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
 display: flex;
 height: 75px;
-
+cursor: pointer;
 .left {
     display: flex;
     width: 100%;

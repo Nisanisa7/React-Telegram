@@ -9,6 +9,9 @@ import Lock from './Group 5.png'
 import ChartStatus from './Group 6.png'
 import ChatLogo from './Chat.png'
 import DeviceLogo from './Rectangle 61.png'
+import Group from './Group 182.png'
+import Emoticon from './Vector (1).png'
+import FileLogo from './Group 181.png'
 export{
     Yennefer,
     Man,
@@ -20,5 +23,8 @@ export{
     Lock,
     ChartStatus,
     ChatLogo,
-    DeviceLogo
+    DeviceLogo,
+    Group,
+    Emoticon,
+    FileLogo
 }

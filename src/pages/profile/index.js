@@ -1,12 +1,23 @@
+import axios from 'axios';
 import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components'
+import Swal from 'sweetalert2';
 import { ChartStatus, ChatLogo, DeviceLogo, Lock, Union, Yennefer } from '../../assets';
 import { Button, Inputfield, Sidebar } from '../../components/atoms';
 
 const Profile = () => {
     const history = useHistory()
+    const idUser = localStorage.getItem('idUser')
+    const status_bio = localStorage.getItem('status_bio')
+    const phone_number = localStorage.getItem('phone_number')
+    const email = localStorage.getItem('email')
+    const username = localStorage.getItem('username')
+    const name = localStorage.getItem('name')
+    const avatar = localStorage.getItem('avatar')
+    const token = localStorage.getItem('token')
+
     useEffect(() => {
         document.title = 'Telegram | Profile';
     });
@@ -16,6 +27,70 @@ const Profile = () => {
     //showing all hidden components
     const [showing, setShowing] = useState(false)
     const [showForm, setShowForm] = useState(false)
+    const [form, setForm] = useState({
+        'name': '',
+        'status_bio': '',
+        'phone_number': '',
+        'avatar': null,
+        'avatarPreview': null
+    })
+    const headers = {
+        "Content-Type": "form-data"
+    };
+    const handleInputImage = (e) => {
+        setForm({
+            ...form,
+            avatar: e.target.files[0],
+            avatarPreview: URL.createObjectURL(e.target.files[0])
+        })
+    }
+    const handleChange = (e) => {
+        setForm({
+            ...form,
+            [e.target.name]: e.target.value
+        })
+
+    }
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        console.log(idUser);
+        axios.patch(`http://localhost:4000/v1/user/${idUser}`, formData, {
+
+            headers: { Authorization: `Bearer ${token}` },
+        })
+            .then((res) => {
+                const dataResponse = res.data.data
+                console.log(dataResponse);
+                localStorage.setItem('name', dataResponse.name)
+                localStorage.setItem('status_bio', dataResponse.status_bio)
+                localStorage.setItem('phone_number', dataResponse.phone_number)
+                localStorage.setItem('avatar', dataResponse.avatar)
+                Swal.fire(
+                    'Success',
+                    'Your Profile has been updated',
+                    'success'
+                )
+            })
+            .catch((error) => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'something went wrong',
+                })
+            })
+    }
+    const formData = new FormData();
+
+    formData.append('name', form.name);
+    formData.append('status_bio', form.status_bio);
+    formData.append('phone_number', form.phone_number);
+    formData.append('avatar', form.avatar);
+    
+    const handleLogout = () =>{
+        localStorage.clear();
+        window.location.href = "/login"
+    }
+
     return (
         <Styles>
             <div className="row g-0">
@@ -25,27 +100,27 @@ const Profile = () => {
                             <Button className="btn" color="transparant" onClick={handleBack}>
                                 <i class="fa fa-chevron-left fa-2x"></i>
                             </Button>
-                            <h4>Username</h4>
+                            <h4>{username}</h4>
                         </div>
                         <div className="profile">
                             <div className="photo-profile">
-                                <img src={Yennefer} alt="" className="avatar" />
+                                <img src={avatar} alt="" className="avatar" />
                             </div>
                             <div className="display-name">
-                                Bame
+                                {name}
                             </div>
                             <div className="username">
-                                @username <i onClick={() => { setShowForm(!showForm) }} class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                {username} <i onClick={() => { setShowForm(!showForm) }} class="fa fa-pencil-square-o" aria-hidden="true"></i>
                             </div>
                         </div>
                         <div className="contact">
                             <h5>Account</h5>
-                            <p className="phone-number">Phone number</p>
+                            <p className="phone-number">{phone_number}</p>
                             <p onClick={() => { setShowing(!showing) }} className="phone-change" >tap to change ur phone  number</p>
                             <div className="hidden">hidden</div>
                         </div>
                         <div className="status-wrap">
-                            <p className="user-bio">Feelin cute today might suffer later</p>
+                            <p className="user-bio">{status_bio}</p>
                             <label htmlFor="">Bio</label>
                             <div className="hidden">hidden</div>
                         </div>
@@ -71,7 +146,7 @@ const Profile = () => {
                                 <img src={DeviceLogo} alt="" />
                                 <span>Devices</span>
                             </a>
-                            <a href="#" class="list-group-item list-group-item-action border-0 ">
+                            <a href="#" onClick={handleLogout} class="list-group-item list-group-item-action border-0 ">
                                 <i class="fa fa-sign-out fa-lg" aria-hidden="true"></i>
                                 <span>Logout</span>
                             </a>
@@ -103,17 +178,17 @@ const Profile = () => {
                         <div className="wrapper-form">
                             <div className="profile-group">
                                 <div className="profile-wrapper">
-                                    <img className="images" src={Yennefer} alt="" />
+                                    <img className="images" src={form.avatarPreview} alt="" />
 
                                     <div className="profile-btn">
-                                        <input id="upload" type="file" onChange="" />
+                                        <input id="upload" type="file" onChange={handleInputImage} />
                                         <label className="button" for="upload">
                                             <i className="fa fa-pencil" aria-hidden="true"></i>
                                         </label>
                                     </div>
                                 </div>
                             </div>
-                                <div className="form">
+                            <div className="form">
                                 <h4>Edit Profile</h4>
                                 <Inputfield
                                     className="input-field"
@@ -121,6 +196,7 @@ const Profile = () => {
                                     onChange=""
                                     type="text"
                                     name="name"
+                                    onChange={handleChange}
                                 />
                                 <Inputfield
                                     className="input-field"
@@ -128,6 +204,7 @@ const Profile = () => {
                                     onChange=""
                                     type="text"
                                     name="username"
+                                    value={username}
                                 />
                                 <Inputfield
                                     className="input-field"
@@ -135,6 +212,15 @@ const Profile = () => {
                                     onChange=""
                                     type="text"
                                     name="status_bio"
+                                    onChange={handleChange}
+                                />
+                                <Inputfield
+                                    className="input-field"
+                                    label="Phone Number"
+                                    onChange=""
+                                    type="text"
+                                    name="phone_number"
+                                    onChange={handleChange}
                                 />
                                 <Inputfield
                                     className="input-field"
@@ -142,19 +228,20 @@ const Profile = () => {
                                     onChange=""
                                     type="email"
                                     name="email"
+                                    value={email}
                                 />
-                                </div>
-                                <div className="container">
+                            </div>
+                            <div className="container">
 
                                 <div className="row">
                                     <div className="col">
-                                        <Button className="button" color="primary">Save Changes</Button>
+                                        <Button className="button" color="primary" onClick={handleSubmit}>Save Changes</Button>
                                     </div>
                                     <div className="col">
-                                        <Button className="button" color="outer-primary" onClick={()=>{setShowForm(!showForm)}}>Cancel</Button>
+                                        <Button className="button" color="outer-primary" onClick={() => { setShowForm(!showForm) }}>Cancel</Button>
                                     </div>
                                 </div>
-                                </div>
+                            </div>
                         </div>
                         : null}
                 </div>
@@ -364,7 +451,7 @@ const Styles = styled.div`
     padding-right: 70px;
     margin-left: auto;
     margin-right: auto;
-    height: 690px;
+    height: 800px;
     margin-top: 90px;
     padding-top: 30px;
     .profile-group{

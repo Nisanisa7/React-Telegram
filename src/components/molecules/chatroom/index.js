@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types';
-import { DefaultAvatar, ProfileMenu } from '../../../assets';
+import { DefaultAvatar, Emoticon, FileLogo, Plus, ProfileMenu } from '../../../assets';
 import { Button } from '../../atoms';
 
 const Chatroom = ({ avatar }) => {
@@ -32,8 +32,28 @@ const Chatroom = ({ avatar }) => {
                 </div>
             </div>
             <div className="input-section">
-                hi
-            </div>
+                  <form
+                    onSubmit=""
+                    className="input-wrapper"
+                  >
+                    <input
+                      type="text"
+                      name="message"
+                      placeholder="Type your message.."
+                    />
+                    <div className="action-button-wrapper">
+                      <div className="icon">
+                        <img src={Plus} alt="icon" />
+                      </div>
+                      <div className="icon">
+                        <img src={Emoticon} alt="icon" />
+                      </div>
+                      <div className="icon">
+                        <img src={FileLogo} alt="icon" />
+                      </div>
+                    </div>
+                  </form>
+                </div>
         </Styles>
     )
 }
@@ -147,13 +167,42 @@ header{
     }
     
 }
-.input-section{
-    height: 120px;
-    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 2px;
+.input-section {
     display: flex;
-    flex-direction: row;
-    padding:  30px 50px;
-    
-}
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+    position: absolute;
+    width: 67%;
+    padding: 0px 50px;
+    .input-wrapper {
+      padding: 21px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fafafa;
+      border-radius: 15px;
+      input {
+        border: 0;
+        width: 100%;
+        font-family: 'Rubik';
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 19px;
+        color: #848484;
+        background-color: transparent;
+        &:focus {
+          outline: none;
+        }
+      }
+      .action-button-wrapper {
+        display: flex;
+        gap: 22px;
+      }
+    }
+  }
+
 
 `
