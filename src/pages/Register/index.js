@@ -4,6 +4,8 @@ import { Link, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { Button, HeaderAuth, Inputfield } from '../../components/atoms';
 import { registerUser } from '../../config/Redux/actions/authAction';
+import { useFormik } from "formik";
+import * as Yup from 'yup';
 
 const Register = () => {
     const dispatch = useDispatch()
@@ -15,51 +17,63 @@ const Register = () => {
     const handleBack = () =>{
         history.push('/login')
     }
-    const [form, setForm] = useState({
-        'username' :'',
-        'email':'',
-        'password':''
+    const formik = useFormik({
+    initialValues: {
+        username:'',
+        email: '',
+        password:''
+    },
+    onSubmit: values =>{
+        dispatch(registerUser(values, history))
+    },
+    validationSchema: Yup.object({
+
+        username: Yup.string().required('Username is required'),
+        email: Yup.string().required('Email is required').email('Email is invalid'),
+        password: Yup.string().required('Password is required').min(8, "Password must be at least 8 characters")
     })
-    const handleChange = (e)=>{
-        setForm({
-            ...form,
-            [e.target.name] : e.target.value
-        })
-    }
-    const handleRegister = (e) =>{
-        dispatch(registerUser(form, history))
-    }
+})
     return (
         <Styles>
             <div className="wrapper">
+                <form onSubmit={formik.handleSubmit}>             
                 <HeaderAuth className="header" title="Register" onClick={handleBack} />
                 <p className="welcome-wagoon">Let's create your account!</p>
                 <div className="form">
                     <Inputfield
                         className="input-field"
-                        label="Name"
-                        onChange={handleChange}
+                        label="Username"
+                        onChange={formik.handleChange}
                         name="username"
                         type="text"
+                        value={formik.values.username}
+                        error={formik.errors.username}
 
                     />
+                    {formik.errors.username && formik.touched.username && ( <p className="errors">{formik.errors.username}</p>)}
                     <Inputfield
                         className="input-field"
                         label="Email"
-                        onChange={handleChange}
+                        onChange={formik.handleChange}
                         name="email"
                         type="email"
+                        value={formik.values.email}
+                        error={formik.errors.email}
 
                     />
+                    {formik.errors.email && formik.touched.email && ( <p className="errors">{formik.errors.email}</p>)}
                     <Inputfield
                         className="input-field"
                         label="Password"
-                        onChange={handleChange}
+                        onChange={formik.handleChange}
                         type="password"
                         name="password"
+                        value={formik.values.pssword}
+                        error={formik.errors.password}
 
                     />
-                    <Button onClick={handleRegister} classname="button" color="primary">Register</Button>
+                    {formik.errors.password && formik.touched.password && ( <p className="errors">{formik.errors.password}</p>)}
+                    <Button type="submit" classname="button" color="primary">Register</Button>
                     <h6>Register with</h6>
                     <Button classname="button" color="outer-primary">
                         <span>
@@ -72,7 +86,7 @@ const Register = () => {
                 <div className="hidden">
                     you cant see me!
                 </div>
-
+                </form>
             </div>
         </Styles>
     )

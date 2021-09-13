@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Emoticon, FileLogo, Girl, Plus, ProfileMenu, Yennefer } from '../../assets'
+import { Emoticon, FileLogo, Plus, ProfileMenu } from '../../assets'
 import { Button } from '../../components/atoms'
 import CardChat from '../../components/atoms/cardChat'
 import Sidebar from '../../components/atoms/sidebar'
@@ -33,15 +33,14 @@ const Home = ({ socket }) => {
 
     useEffect(() => {
         if (socket && showFriend) {
-            socket.off('MsgFromBackend')
-            socket.on('MsgFromBackend', (data) => {
+            socket.off('sendChatFromBackend')
+            socket.on('sendChatFromBackend', (data) => {
                 if (data.sender_id === showFriend.idUser) {
                     (setMessages((currentValue) => [...currentValue, data]))
 
                 } else {
                     
-                    toastify(`${data.sender_id} : ${data.message}`, "info")
-                    
+                    toastify(`${data.sender_id} : ${data.message}`, "info")                  
                 }
             })
         }
@@ -79,7 +78,7 @@ const Home = ({ socket }) => {
     const handleSendMessage = (e) => {
         if (socket && message) {
             e.preventDefault()
-            socket.emit('sendMessage', {
+            socket.emit('sendChat', {
                 idReceiver: showFriend.idUser,
                 messageBody: message
             }, (data) => {

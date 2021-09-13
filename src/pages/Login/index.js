@@ -5,29 +5,26 @@ import { Link, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { Button, Inputfield } from '../../components/atoms';
 import { loginUser } from '../../config/Redux/actions/authAction';
-
+import { useFormik } from "formik";
+import * as Yup from 'yup';
 
 const Login = ({setSocket}) => {
 
     const history = useHistory()
     const dispatch = useDispatch()
-
-    const [form, setForm] = useState({
-        'email' :'',
-        'password':''
-    })
-    const handleChange = (e) =>{
-        setForm({
-            ...form,
-            [e.target.name] : e.target.value
+    const formik = useFormik({
+        initialValues: {
+            email: '',
+            password:''
+        },
+        onSubmit: values =>{
+            dispatch(loginUser(values, history, setSocket))
+        },
+        validationSchema: Yup.object({
+            email: Yup.string().required('Email is required').email('Email is invalid'),
+            password: Yup.string().required('Password is required')
         })
-    }
-    const handleLogin = () =>{
-        dispatch(loginUser(form, history, setSocket))
-        // .then(()=>{
-
-        // })
-    }
+    })
     useEffect(() => {
         document.title = 'Telegram | Login';
         document.body.style.backgroundColor = "#E5E5E5";
@@ -38,29 +35,34 @@ const Login = ({setSocket}) => {
             <div className="wrapper">
                 <div className="logo">Login</div>
                 <p className="welcome-wagoon">Hi, Welcome Back!</p>
+                <form onSubmit={formik.handleSubmit}>          
                 <div className="form">
                     <Inputfield
                         className="input-field"
                         name="email"
+                        value={formik.values.email}
                         label="Email"
-                        onChange={handleChange}
+                        onChange={formik.handleChange}
                         type="email"
-
+                        error={formik.errors.email}
                     />
+                    {formik.errors.email && formik.touched.email && ( <p className="errors">{formik.errors.email}</p>)}
                     <Inputfield
                         className="input-field"
                         label="Password"
                         name="password"
-                        onChange={handleChange}
+                        value={formik.values.password}
+                        onChange={formik.handleChange}
                         type="password"
-
+                        error={formik.errors.password}
                     />
+                      {formik.errors.password && formik.touched.password && ( <p className="errors">{formik.errors.password}</p>)}
                     <div class="forgot-pass">
                         <Link to="/reset">
                             Forgot password
                             ?</Link>
                     </div>
-                    <Button onClick={handleLogin} classname="button" color="primary">Login</Button>
+                    <Button type="submit" classname="button" color="primary">Login</Button>
                     <h6>Login with</h6>
                     <Button classname="button" color="outer-primary">
                         <span>
@@ -75,6 +77,7 @@ const Login = ({setSocket}) => {
                 <div className="hidden">
                     you cant see me!
                 </div>
+                </form>
             </div>
         </Styles>
     )
