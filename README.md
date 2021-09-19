@@ -3,7 +3,7 @@
 
   <h3 align="center">Telegram Clone</h3>
   <p align="center">
-   [My image](Nisanisa7.github.com/React-Telegram/creenshot/LOGO TELEGRAM.png
+  <image align="center" width="200" src='./screenshot/LOGO TELEGRAM.png' />
   </p>
 
   <p align="center">
