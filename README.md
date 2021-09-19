@@ -8,14 +8,14 @@
 
   <p align="center">
     <br />
-    <a href="https://github.com/AdmiralYuuShi/Frontend-HiringChannelApp-WithRedux"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/Nisanisa7/React-Telegram"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="http://www.hiring-channel.com.s3-website-us-east-1.amazonaws.com/">View Demo</a>
+    <a href="https://vercel.com/nisanisa7/react-telegram/CDrYqrNzUV9FQPYX9EUH6W15AcMX">View Demo</a>
     ·
-    <a href="https://github.com/AdmiralYuuShi/Frontend-HiringChannelApp-WithRedux/issues">Report Bug</a>
+    <a href="https://github.com/Nisanisa7/React-Telegram/issues">Report Bug</a>
     ·
-    <a href="https://github.com/AdmiralYuuShi/Frontend-HiringChannelApp-WithRedux/issues">Request Feature</a>
+    <a href="https://github.com/Nisanisa7/React-Telegram/issues">Request Feature</a>
   </p>
 </p>
 
@@ -39,7 +39,7 @@
 ## About The Project
 
 
-The Hiring Channel Web is a Website that contains data from Company and Engineer, which is made for Engineers to enter their profiles so that Companies can searching for Engineers that match their specifications.
+Telegram clone is a chatting aplication. that help you to communicate with your friends
 
 ### Built With
 
@@ -60,7 +60,7 @@ This is an example of how to list things you need to use the software and how to
 
 1. Clone the repo
 ```sh
-git clone https://github.com/AdmiralYuuShi/Frontend-HiringChannelApp-WithRedux.git
+git clone https://github.com/Nisanisa7/React-Telegram.git
 ```
 2. Install NPM packages
 ```sh
@@ -68,7 +68,7 @@ npm install
 ```
 3. Add .env file at root folder project, and add following
 ```sh
-REACT_APP_API_URL=[Backend API]
+REACT_APP_BACKEND_API =L=[Backend API]
 ```
 
 
@@ -78,17 +78,10 @@ REACT_APP_API_URL=[Backend API]
 
 <p align='center'>
   <span>
-      <image width="200" src='./screenshots/hca-register.png' />
-      <image width="200" src='./screenshots/hca-login.png' />
-      <image width="200" src='./screenshots/hca-home.png' />
-      <image width="200" src='./screenshots/hca-engineers-10.png' />
-      <image width="200" src='./screenshots/hca-companies.png' />
-      <image width="200" src='./screenshots/hca-create-profile-engineer.png' />
-      <image width="200" src='./screenshots/hca-create-company-profile.png' />
-      <image width="200" src='./screenshots/hca-profile-engineer.png' />
-      <image width="200" src='./screenshots/hca-profile-company.png' />
-      <image width="200" src='./screenshots/hca-edit-profile-engineer.png' />
-      <image width="200" src='./screenshots/hca-edit-profile-company.png' />
+      <image width="200" src='./screenshot/home.png' />
+    <image width="200" src='./screenshot/homechat.png' />
+    <image width="200" src='./screenshotprofile paghe.png' />
+
      
 
 <!-- CONTRIBUTING -->
