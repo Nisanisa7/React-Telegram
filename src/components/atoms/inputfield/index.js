@@ -2,7 +2,7 @@ import { TextField } from '@material-ui/core'
 import React from 'react'
 import styled from 'styled-components'
 
-const Inputfield = ({className, label, name, value, onChange, type, defaultValue, error}) => {
+const Inputfield = ({className, label, name, value, onChange, type, error}) => {
     return (
         <Styles className={className}>
             <TextField
@@ -13,7 +13,6 @@ const Inputfield = ({className, label, name, value, onChange, type, defaultValue
             value={value}
             onChange={onChange}
             type={type}
-            defaultValue={defaultValue}
             error={error}/>
         </Styles>
     )

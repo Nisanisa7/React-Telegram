@@ -53,6 +53,15 @@ cursor: pointer;
       color: #4d4b57;
       margin-bottom: 10px;
       color: #232323;
+        @media screen and (min-width: 576px) {
+            font-size: 14px;
+        }
+        @media screen and (min-width: 768px) {
+            font-size: 16px;
+        }
+        @media screen and (min-width: 992px) {
+            font-size: 18px;
+        }
     }
     p {
       margin: 0;

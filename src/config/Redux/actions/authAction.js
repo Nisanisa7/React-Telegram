@@ -2,77 +2,11 @@ import axios from 'axios'
 import io from 'socket.io-client';
 import Swal from 'sweetalert2'
 
-// export const loginUser = (data, history, setSocket) => (dispatch)=> {
-  
-//     axios.post(`${process.env.REACT_APP_BACKEND_API}/auth/login`, data)
-//     .then((res)=>{
-//         //  const result = res.data.data
-//         const token = res.data.data.token;
-//         const idUser = res.data.data.idUser;
-//         const username = res.data.data.username;
-//         const email = res.data.data.email;
-//         const phone_number = res.data.data.phone_number;
-//         const name = res.data.data.name;
-//         const status_bio = res.data.data.status_bio;
-//         const avatar = res.data.data.avatar;
-//         const status = res.data.data.status;
-//         const isAuth = true;
-
-//         const dataUser = res.data.data
-//         console.log(idUser);
-//         dispatch({type:'LOGIN', payload: dataUser})
-
-        
-//         localStorage.setItem('token', token);
-//         localStorage.setItem('idUser', idUser);
-//         localStorage.setItem('username', username);
-//         localStorage.setItem('email', email);
-//         localStorage.setItem('phone_number', phone_number);
-//         localStorage.setItem('name', name);
-//         localStorage.setItem('status_bio', status_bio);
-//         localStorage.setItem('avatar', avatar);
-//         localStorage.setItem('status', status);
-        
-//         const resultSocket = io('http://localhost:4000', {
-//           query: {
-//             token: localStorage.getItem('token'),
-//           },
-//         });
-//         setSocket(resultSocket);
-        
-
-
-//         if(status === 'inactive'){
-//             Swal.fire({
-//                 icon: 'error',
-//                 title: 'Boo Boo',
-//                 text: 'Please activate your account first!',
-//               })
-//         } else{
-//             history.push('/',
-//             Swal.fire(
-//                 'Welcome',
-//                 'Welcome to Telegram',
-//                 'success'
-//               )
-//             )
-//         }
-//     })
-//     .catch((error)=>{
-//         console.log(error);
-//         dispatch({type: 'LOGIN_BUYER', payload: error})
-//         Swal.fire({
-//             icon: 'error',
-//             title: 'Oops...',
-//             text: error,
-//           })
-//     })
-// }
-
 export const loginUser = (data, history, setSocket) => (dispatch)=> {
   
     axios.post(`${process.env.REACT_APP_BACKEND_API}/auth/login`, data)
     .then((res)=>{
+      
         //  const result = res.data.data
         const token = res.data.data.token;
         const idUser = res.data.data.idUser;
@@ -85,6 +19,14 @@ export const loginUser = (data, history, setSocket) => (dispatch)=> {
         const status = res.data.data.status;
         const isAuth = true;
 
+        if(status === 'inactive'){
+          Swal.fire({
+              icon: 'error',
+              title: 'Boo Boo',
+              text: 'Please activate your account first!',
+            })
+            return 
+        }
         const dataUser = {
             data: res.data.data,
             error: res.data.error,
@@ -109,22 +51,15 @@ export const loginUser = (data, history, setSocket) => (dispatch)=> {
           },
         });
         setSocket(resultSocket);
+    
         
-        if(status === 'inactive'){
-            Swal.fire({
-                icon: 'error',
-                title: 'Boo Boo',
-                text: 'Please activate your account first!',
-              })
-        } else{
             history.push('/',
             Swal.fire(
                 'Welcome',
                 'Welcome to Telegram',
                 'success'
               )
-            )
-        }
+           )
     })
     .catch((error)=>{
         console.log(error.response);
@@ -146,7 +81,7 @@ export const registerUser = (data, history) =>(dispatch)=>{
             'success'
           )
           const dataUser = {
-            data: result.data.data,
+            data: result.data.data.data,
             error: result.data.error,
             message: result.data.message,
             status: result.data.status,
@@ -169,4 +104,57 @@ export const registerUser = (data, history) =>(dispatch)=>{
             text: error.response.data.error.message,
           })
     })
+}
+export const updateProfile = (data, token, idUser, ) => (dispatch) =>{
+    const formData = new FormData()
+    console.log(data);
+    formData.append('name', data.name);
+    // formData.append('username', data.username);
+    formData.append('status_bio', data.status_bio);
+    formData.append('phone_number', data.phone_number);
+    formData.append('avatar', data.avatar);
+    console.log(formData);
+    console.log('ini tokennya',token);
+    axios.patch(`${process.env.REACT_APP_BACKEND_API}/user/${idUser}`, formData ,{
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res)=>{
+      const resData = res.data.data
+
+      dispatch = ({action:'UPDATE_USER', payload: resData})
+      Swal.fire(
+        'Update Success',
+        'update profile success',
+        'success'
+      )
+    })
+    .catch((err)=>{
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: err.response.data.message,
+      })
+    })
+}
+export const  getCurrentProfile = (idUser) => (dispatch) =>{
+      axios.get(`${process.env.REACT_APP_BACKEND_API}/user/${idUser}`)
+      .then((res)=>{
+        const resData = res.data.data
+
+        dispatch = ({action:'GET_USER', payload: resData})
+        Swal.fire(
+          'Update Success',
+          'update profile success',
+          'success'
+        )
+      })
+      .catch((err)=>{
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: err.response.data.message,
+        })
+      })
 }

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Emoticon, FileLogo, Plus, ProfileMenu } from '../../assets'
+import { DefaultAvatar, Emoticon, FileLogo, Plus, ProfileMenu } from '../../assets'
 import { Button } from '../../components/atoms'
 import CardChat from '../../components/atoms/cardChat'
 import Sidebar from '../../components/atoms/sidebar'
@@ -14,15 +14,15 @@ import { toastify } from '../../utils';
 import { HomeStyles } from './Styled'
 import moment from 'moment'
 import ScrollToBottom from 'react-scroll-to-bottom';
+import { useSelector } from 'react-redux';
 
 const Home = ({ socket }) => {
-    const { toggle, visible } = UseModal();
-    const { handleOpen, show } = OpenModal();
+    const dataUser = useSelector(state => state.user.profile.data)
     const [friends, setFriends] = useState([])
     const [showFriend, setShowFriend] = useState(null)
     const [message, setMessage] = useState('')
     const [messages, setMessages] = useState([])
-
+    const [search, setSearch] = useState("")
     const username = localStorage.getItem('username');
     const name = localStorage.getItem('name');
     const avatar = localStorage.getItem('avatar');
@@ -94,10 +94,10 @@ const Home = ({ socket }) => {
                 <div className="col col-4">
                     <Sidebar className="sidebar">
                         <div className="logo-header">
-                            <div className="logo" onClick={handleOpen}>
+                            <div className="logo" onClick="">
                                 Telegram
                             </div>
-                            <button className="toggle-head" onClick={toggle} >
+                            <button className="toggle-head" onClick="" >
                                 <div className="menu-toggle">
                                     <span className="span1"></span>
                                     <span className="span2"></span>
@@ -108,11 +108,11 @@ const Home = ({ socket }) => {
                         <div className="profile">
                             <Link to="/profile">
                                 <div className="photo-profile">
-                                    <img src={avatar} alt="" className="avatar" />
+                                    <img src={dataUser.avatar ? dataUser.avatar : DefaultAvatar} alt="" className="avatar" />
                                 </div>
                             </Link>
                             <div className="display-name">
-                                {name}
+                                {dataUser.name}
                             </div>
                             <div className="username">
                                 @{username}
@@ -121,26 +121,32 @@ const Home = ({ socket }) => {
                         <div className="search-section">
                             <div className="search">
                                 <i className="fa fa-search fa-1x"></i>
-                                <input type="text" className="searchTerm" name="" placeholder="Type your message" />
+                                <input type="text" className="searchTerm" name="" onChange={(e)=>{setSearch(e.target.value)}} placeholder="Search" />
                             </div>
                             <button>
                                 <img src={Plus} alt="" />
                             </button>
                         </div>
                         <div className="chat">
-                            {friends.map((friend) => (
-                                <CardChat key={friend.idUser} onClick={() => setShowFriend(friend)} className="chat-card" avatar={friend.avatar} username={friend.name} />
+                            {friends.filter((friend)=>{
+                                if(search == ""){
+                                    return friend
+                                } else if(friend.name.toLowerCase().includes(search.toLocaleLowerCase())){
+                                    return friend
+                                }
+                            }).map((friend) => (
+                                <CardChat key={friend.idUser} onClick={() => setShowFriend(friend)} className="chat-card" avatar={friend.avatar ? friend.avatar : DefaultAvatar} username={friend.name} />
                             ))}
                             <ToastContainer />
                         </div>
                     </Sidebar>
                 </div>
-                {showFriend && (<>
-                    <div className="col col-8">
+                <div className="col col-8">
+                {showFriend ?
                         <div className="second-wrapper">
                             <header>
                                 <div className="profile-picture">
-                                    <img src={showFriend.avatar} alt="" />
+                                    <img src={showFriend.avatar ? showFriend.avatar : DefaultAvatar} alt="" />
                                 </div>
                                 <div className="user-profile">
                                     <div className="text-heading">{showFriend.name}</div>
@@ -152,22 +158,20 @@ const Home = ({ socket }) => {
                                     </Button>
                                 </div>
                             </header>
-                            <div className="chat-section">
-                                <ScrollToBottom className="chat-wrapper">
+                            <ScrollToBottom className="chat-section">
                                     {messages.map((item) =>
                                         <>
                                             <div className={`chat friends ${showFriend.idUser === item.receiver_id ? 'me' : ''}`}>
                                                 {showFriend.idUser === item.receiver_id ? <p className="time-msg">{moment(item.createdAt).format("LT")}</p> : ''}
                                                 {/* <img src={showFriend.idUser === item.receiver_id ? avatar: '' } alt="" /> */}
-                                                {showFriend.idUser !== item.receiver_id ? <img src={showFriend.avatar} className="img" alt="" /> : ''}
+                                                {showFriend.idUser !== item.receiver_id ? <img src={showFriend.avatar ? showFriend.avatar : DefaultAvatar} className="img" alt="" /> : ''}
                                                 <p className={`chat-text ${showFriend.idUser === item.receiver_id ? 'chat-me' : ''}`}>{item.message}</p>
                                                 {showFriend.idUser !== item.receiver_id ? <p className="time-msg-friend">{moment(item.createdAt).format("LT")}</p> : ''}
                                                 {showFriend.idUser === item.receiver_id ? <img src={avatar} className="me-img" alt="" /> : ''}
                                             </div>
                                         </>
                                     )}
-                                </ScrollToBottom>
-                            </div>
+                            </ScrollToBottom>
                             <div className="input-section">
                                 <form
                                     onSubmit=""
@@ -195,11 +199,10 @@ const Home = ({ socket }) => {
                                 </form>
                             </div>
                         </div>
-                    </div>
-                </>)}
+                    : <div className="default-message">Please select a contact to start messaging</div>}
+                </div>
             </div>
-            <ModalWindow show={show} handleOpen={handleOpen} />
-            <ModalMenu visible={visible} toggle={toggle} />
+            
         </HomeStyles>
     )
 }

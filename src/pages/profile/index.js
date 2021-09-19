@@ -1,22 +1,27 @@
 import axios from 'axios';
+import Modal from "react-bootstrap/Modal";
 import React, { useEffect } from 'react'
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components'
 import Swal from 'sweetalert2';
-import { ChartStatus, ChatLogo, DeviceLogo, Lock, Union, Yennefer } from '../../assets';
+import { ChartStatus, ChatLogo, DefaultAvatar, DeviceLogo, Lock, Union, Yennefer } from '../../assets';
 import { Button, Inputfield, Sidebar } from '../../components/atoms';
+import { getCurrentProfile, updateProfile } from '../../config/Redux/actions/authAction';
+import Buttonboo from "react-bootstrap/Button";
 
 const Profile = () => {
     const history = useHistory()
+    const dispatch = useDispatch()
+    const dataUser = useSelector(state => state.user.profile.data)
     const idUser = localStorage.getItem('idUser')
-    const status_bio = localStorage.getItem('status_bio')
-    const phone_number = localStorage.getItem('phone_number')
-    const email = localStorage.getItem('email')
-    const username = localStorage.getItem('username')
-    const name = localStorage.getItem('name')
-    const avatar = localStorage.getItem('avatar')
-    const token = localStorage.getItem('token')
+    const [preview, setImagePreview] = useState(null)
+    const [errImage, setErrImage] = useState(false)
+    const [errImageType, setErrImageType] = useState(false)
+    const [reset, setReset] = useState(true)
+    console.log(dataUser.token);
 
     useEffect(() => {
         document.title = 'Telegram | Profile';
@@ -24,73 +29,63 @@ const Profile = () => {
     const handleBack = () => {
         history.push('/')
     }
+
+    // useEffect(() => {
+    //   dispatch(getCurrentProfile(dataUser.idUser))
+    // }, [reset])
     //showing all hidden components
     const [showing, setShowing] = useState(false)
     const [showForm, setShowForm] = useState(false)
-    const [form, setForm] = useState({
-        'name': '',
-        'status_bio': '',
-        'phone_number': '',
-        'avatar': null,
-        'avatarPreview': null
-    })
-    const headers = {
-        "Content-Type": "form-data"
-    };
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
     const handleInputImage = (e) => {
-        setForm({
-            ...form,
-            avatar: e.target.files[0],
-            avatarPreview: URL.createObjectURL(e.target.files[0])
-        })
+        e.preventDefault()
+        if (e.target.files[0].size > 1048576) {
+            setErrImage(true)
+            setErrImageType(false)
+        }
+        else if (e.target.files[0].type !== "image/png" && e.target.files[0].type !== "image/jpg" && e.target.files[0].type !== "image/jpeg") {
+            setErrImageType(true)
+            setErrImage(false)
+        }
+        else if (e.target.files.length !== 0) {
+            setErrImage(false)
+            setErrImageType(false)
+            setImagePreview(URL.createObjectURL(e.target.files[0]))
+            dispatch({ type: 'CHANGE_VALUE', payload: { preview: preview } })
+        }
+        // setImagePreview(URL.createObjectURL(e.target.files[0]))
+        dispatch({ type: 'CHANGE_VALUE', payload: { [e.target.name]: e.target.files[0] } })
     }
     const handleChange = (e) => {
-        setForm({
-            ...form,
-            [e.target.name]: e.target.value
-        })
-
+        dispatch({ type: 'CHANGE_VALUE', payload: { [e.target.name]: e.target.value } })
     }
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(idUser);
-        axios.patch(`http://localhost:4000/v1/user/${idUser}`, formData, {
+        dispatch(updateProfile(dataUser, dataUser.token, dataUser.idUser, handleInputImage))
+        dispatch(getCurrentProfile(dataUser.idUser))
 
-            headers: { Authorization: `Bearer ${token}` },
-        })
-            .then((res) => {
-                const dataResponse = res.data.data
-                console.log(dataResponse);
-                localStorage.setItem('name', dataResponse.name)
-                localStorage.setItem('status_bio', dataResponse.status_bio)
-                localStorage.setItem('phone_number', dataResponse.phone_number)
-                localStorage.setItem('avatar', dataResponse.avatar)
-                Swal.fire(
-                    'Success',
-                    'Your Profile has been updated',
-                    'success'
-                )
-            })
-            .catch((error) => {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'something went wrong',
-                })
-            })
     }
-    const formData = new FormData();
-
-    formData.append('name', form.name);
-    formData.append('status_bio', form.status_bio);
-    formData.append('phone_number', form.phone_number);
-    formData.append('avatar', form.avatar);
-    
-    const handleLogout = () =>{
+    const handleLogout = () => {
         localStorage.clear();
         window.location.href = "/login"
     }
-
+    const handleDelete = () => {
+        axios.delete(`${process.env.REACT_APP_BACKEND_API}/user/${idUser}`)
+            .then(() => {
+                Swal.fire(
+                'Deleted!',
+                'Your Account has been deleted, BYE BYE',
+                'success'
+                )
+            localStorage.clear();
+            history.push('/login')
+        })
+    }
     return (
         <Styles>
             <div className="row g-0">
@@ -100,51 +95,35 @@ const Profile = () => {
                             <Button className="btn" color="transparant" onClick={handleBack}>
                                 <i class="fa fa-chevron-left fa-2x"></i>
                             </Button>
-                            <h4>{username}</h4>
+                            <h4>{dataUser.username}</h4>
                         </div>
                         <div className="profile">
                             <div className="photo-profile">
-                                <img src={avatar} alt="" className="avatar" />
+                                <img src={preview ? preview : dataUser.avatar ? dataUser.avatar : DefaultAvatar} alt="" className="avatar" />
                             </div>
                             <div className="display-name">
-                                {name}
+                                {dataUser.name}
                             </div>
                             <div className="username">
-                                {username} <i onClick={() => { setShowForm(!showForm) }} class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                {dataUser.username} <i onClick={() => { setShowForm(!showForm) }} class="fa fa-pencil-square-o" aria-hidden="true"></i>
                             </div>
                         </div>
                         <div className="contact">
                             <h5>Account</h5>
-                            <p className="phone-number">{phone_number}</p>
+                            <p className="phone-number">{dataUser.phone_number}</p>
                             <p onClick={() => { setShowing(!showing) }} className="phone-change" >tap to change ur phone  number</p>
                             <div className="hidden">hidden</div>
                         </div>
                         <div className="status-wrap">
-                            <p className="user-bio">{status_bio}</p>
+                            <p className="user-bio">{dataUser.status_bio}</p>
                             <label htmlFor="">Bio</label>
                             <div className="hidden">hidden</div>
                         </div>
                         <div class="list-group ">
                             <h5>Settings</h5>
-                            <a href="#" class="list-group-item list-group-item-action border-0 ">
-                                <img src={Union} alt="" />
-                                <span>Notification and Sounds</span>
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action border-0 ">
+                            <a href="#" onClick={handleShow} class="list-group-item list-group-item-action border-0 ">
                                 <img src={Lock} alt="" />
-                                <span>Privacy and Security</span>
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action border-0 ">
-                                <img src={ChartStatus} alt="" />
-                                <span>Data and Storage</span>
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action border-0 ">
-                                <img src={ChatLogo} alt="" />
-                                <span>Chat Settings</span>
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action border-0 ">
-                                <img src={DeviceLogo} alt="" />
-                                <span>Devices</span>
+                                <span>Delete Account</span>
                             </a>
                             <a href="#" onClick={handleLogout} class="list-group-item list-group-item-action border-0 ">
                                 <i class="fa fa-sign-out fa-lg" aria-hidden="true"></i>
@@ -162,7 +141,6 @@ const Profile = () => {
                                 <Inputfield
                                     className="input-field"
                                     label="Phone number"
-                                    onChange=""
                                     type="text"
                                     name="text"
                                 />
@@ -178,14 +156,16 @@ const Profile = () => {
                         <div className="wrapper-form">
                             <div className="profile-group">
                                 <div className="profile-wrapper">
-                                    <img className="images" src={form.avatarPreview} alt="" />
+                                    <img className="images" src={preview ? preview : dataUser.avatar ? dataUser.avatar : DefaultAvatar} alt="" />
 
                                     <div className="profile-btn">
-                                        <input id="upload" type="file" onChange={handleInputImage} />
+                                        <input id="upload" type="file" name="avatar" onChange={handleInputImage} />
                                         <label className="button" for="upload">
                                             <i className="fa fa-pencil" aria-hidden="true"></i>
                                         </label>
                                     </div>
+                                    {errImage ? <p className="error">Image size is too large. max 1mb</p> : ''}
+                                    {errImageType ? <p className="error">Invalid file type. only png, jpg, and jpeg format allowed</p> : ''}
                                 </div>
                             </div>
                             <div className="form">
@@ -193,42 +173,40 @@ const Profile = () => {
                                 <Inputfield
                                     className="input-field"
                                     label="Name"
-                                    onChange=""
                                     type="text"
                                     name="name"
+                                    value={dataUser.name || ''}
                                     onChange={handleChange}
                                 />
                                 <Inputfield
                                     className="input-field"
                                     label="Username"
-                                    onChange=""
                                     type="text"
                                     name="username"
-                                    value={username}
+                                    value={dataUser.username}
                                 />
                                 <Inputfield
                                     className="input-field"
                                     label="Bio"
-                                    onChange=""
                                     type="text"
                                     name="status_bio"
+                                    value={dataUser.status_bio || ''}
                                     onChange={handleChange}
                                 />
                                 <Inputfield
                                     className="input-field"
                                     label="Phone Number"
-                                    onChange=""
                                     type="text"
                                     name="phone_number"
                                     onChange={handleChange}
+                                    value={dataUser.phone_number}
                                 />
                                 <Inputfield
                                     className="input-field"
                                     label="Email"
-                                    onChange=""
                                     type="email"
                                     name="email"
-                                    value={email}
+                                    value={dataUser.email}
                                 />
                             </div>
                             <div className="container">
@@ -246,6 +224,20 @@ const Profile = () => {
                         : null}
                 </div>
             </div>
+                <Modal show={show} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Are you sure?</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>Once you delete your account, all of your chat and information will be deleted</Modal.Body>
+                    <Modal.Footer>
+                        <Buttonboo variant="secondary" onClick={handleClose}>
+                            Close
+                        </Buttonboo>
+                        <Buttonboo variant="danger" onClick={handleDelete}>
+                            Delete
+                        </Buttonboo>
+                    </Modal.Footer>
+                </Modal>
         </Styles>
     )
 }
@@ -254,13 +246,13 @@ export default Profile
 const Styles = styled.div`
 .sidebar{
     width: 100%;
-    height: 100vh;
     box-shadow: rgba(0, 0, 0, 0.1) 5px 0 5px -5px;
     padding: 0 30px;
     .header-wrapper{
         display: flex;
         flex-direction: row;
         padding-top: 43px;
+      
         .btn{
             
             .fa{
@@ -269,16 +261,17 @@ const Styles = styled.div`
                 border-radius: 30px;
             }
         }
-            h4{
-            flex: 1;
-            font-family: 'Rubik';
-            font-style: normal;
-            font-weight: 500;
-            font-size: 24px;
-            line-height: 28px;
-            padding-top: 10px;
-            color: #7E98DF;
-            text-align: center;
+        h4{
+           flex: 1;
+           font-family: 'Rubik';
+           font-style: normal;
+           font-weight: 500;
+           font-size: 24px;
+           line-height: 28px;
+           padding-top: 10px;
+           color: #7E98DF;
+         
+           
         }
     }
     .profile{

@@ -3,8 +3,7 @@ import styled from 'styled-components'
 export const HomeStyles = styled.body`
 .sidebar{
     width: 100%;
-    height: 100vh;
-    box-shadow: rgba(0, 0, 0, 0.1) 5px 0 5px -5px;
+	box-shadow: 8px -8px 10px -6px rgba(0, 0, 0, 0.1);
     padding: 0 30px;
     .logo-header{
             padding-top: 43px;
@@ -22,6 +21,12 @@ export const HomeStyles = styled.body`
                 letter-spacing: -0.165px;
                 padding-top: 10px;
                 color: #7E98DF;
+                    @media screen and (min-width: 576px) {
+                        font-size: 22px;
+                    }
+                    @media screen and (min-width: 992px) {
+                        font-size: 29px;
+                    }
             }
             .toggle-head{
                 width: 50px;
@@ -29,6 +34,13 @@ export const HomeStyles = styled.body`
                 outline: none;
                 border: none;
                 background: transparent;
+                    @media screen and (min-width: 576px) {
+                       width: 20px;
+                    }
+                    @media screen and (min-width: 992px) {
+                        width: 50px;
+                    }
+                
                 .menu-toggle{
                     display: flex;
                     flex-direction: column;
@@ -94,23 +106,34 @@ export const HomeStyles = styled.body`
             display: flex;
             flex-direction: row;
             justify-content: space-between;
-            gap: 1rem;
+            
             .search{
                 position: relative;
                 margin-top: 40px;
                 input[type="text"]
                 {
                     padding-left: 25px;
-                    width: 250px;
+                    width: 350px;
                     height: 59px;
                     background: #FAFAFA;
                     border-radius: 15px;
                     box-sizing: border-box;
                     border: none;
                     outline: none;
-                    @media screen and (max-width: 992px) {
-                            width: 120px;
-                    }
+                        @media screen and (min-width: 576px) {
+                            width: 130px;
+                        }
+                        @media screen and (min-width: 768px) {
+                            width: 180px;
+                        }
+                        @media screen and (min-width: 992px) {
+                            width: 280px;
+                            height: 59px;
+                        }
+                        @media screen and (min-width: 1200px) {
+                            width: 350px;
+                            height: 59px;
+                        }
                     ::placeholder{
                         font-family: 'Rubik';
                         font-style: normal;
@@ -119,9 +142,15 @@ export const HomeStyles = styled.body`
                         line-height: 19px;
                         letter-spacing: -0.165px;
                         color: #848484;
-                        @media screen and (max-width: 992px) {
-                            font-size: 11px;
-                    }
+                        @media screen and (min-width: 576px) {
+                            font-size: 12px;
+                        }
+                        @media screen and (min-width: 786px) {
+                            font-size: 15px;
+                        }
+                        @media screen and (min-width: 992px) {
+                            font-size: 19px;
+                        }
                     }
             
                     }
@@ -129,11 +158,11 @@ export const HomeStyles = styled.body`
                     {
                         position:absolute;
                         top:22px;
-                        left: 5px;
+                        left: 10px;
                         color:#848484;
                         @media screen and (max-width: 992px) {
                             width: 2px;
-                            }
+                        }
                     }
                 }
                 button{
@@ -142,13 +171,25 @@ export const HomeStyles = styled.body`
                     border: none;
                     outline: none;
                     background: none;
+                    
+                    img{
+                        @media screen and (min-width: 576px) {
+                            width: 15px;
+                         }
+                         @media screen and (min-width: 768px) {
+                           width: 25px;
+                         }
+                    }
                 }  
       }
       .chat{
-          margin-top: 35px;
-          .chat-card{
+        margin-top: 35px;
+        overflow-y: auto;
+        height: 350px;
+        width: 100%;
+        .chat-card{
             margin-bottom: 25px;
-          }
+        }
       }
 }
 .second-wrapper{
@@ -161,6 +202,7 @@ header{
     display: flex;
     flex-direction: row;
     padding:  30px 50px;
+    margin-bottom: 20px;
     .profile-picture{
           img{
                 width: 64px;
@@ -208,15 +250,10 @@ header{
     padding: 0 50px;
     display: flex;
     flex-direction: column;  
-    height: 500px;
-    /* background: black; */
-    width: 800px;
+    height: 600px;
+    width: 69%;
     position:absolute;
-    
-.chat-wrapper{
     overflow-y: auto;
-    width: 800px;
-    
     .chat {
       display: flex;
       
@@ -242,12 +279,23 @@ header{
             font-style: normal;
             font-weight: normal;
             font-size: 15px;
+            @media screen and (min-width: 576px) {
+                width: 200px;
+                font-size: 13px;
+                
+            }
+            @media screen and (min-width: 768px) {
+                width: 250px;
+                font-size: 14px;
+            }
+            @media screen and (min-width: 992px) {
+                width: 286px;
+            }
+                
         }
         .chat-me{
             background: #FFFFFF;
             border-radius: 35px 10px 35px 35px;
-            margin-left: auto;
-            margin-right: 20px;
             width: 286px;
             padding: 17px 30px;
             color: black;
@@ -256,9 +304,34 @@ header{
             font-style: normal;
             font-weight: normal;
             font-size: 15px;
+            @media screen and (min-width: 576px) {
+                width: 200px;
+                font-size: 13px;
+                
+            }
+                @media screen and (min-width: 768px) {
+                    width: 250px;
+                    font-size: 14px;
+                }
+                @media screen and (min-width: 992px) {
+                    width: 286px;
+                    font-size: 15px;
+                }
+           
         }
+        .time-msg{
+                margin-left: auto;
+                padding-top: 30px;
+                    @media screen and (min-width: 576px) {
+                        font-size: 13px;
+                        
+                    }
+                    @media screen and (min-width: 992px) {
+                        font-size: 15px;                
+                    }
+            }
         .me-img{
-            margin-left: auto;
+            margin-left: 20px;
             margin-top: 30px;
             width: 52px;
             height: 52px;
@@ -266,28 +339,31 @@ header{
             object-fit: cover;
             margin-bottom:35px;   
             background: teal;
+             
         }
-        .time-msg{
-            margin-left: 200px;
-            padding-top: 30px;
-        }
+      
         .time-msg-friend{
             padding-top: 30px;
             padding-left: 20px;
+                @media screen and (min-width: 576px) {
+                    font-size: 13px;                
+                }
+                @media screen and (min-width: 992px) {
+                    font-size: 15px;                
+                }
         }
     }  
-    }
 }
 .input-section {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: white;
+    /* background: pink; */
     position: absolute;
     width: 100%;
     padding: 0px 50px;
     position: relative;
-    top: 500px;
+    top: 600px;
     .input-wrapper {
       padding: 21px;
       width: 100%;
@@ -308,6 +384,12 @@ header{
         background-color: transparent;
         &:focus {
           outline: none;
+                @media screen and (min-width: 576px) {
+                    font-size: 13px;                
+                }
+                @media screen and (min-width: 992px) {
+                    font-size: 15px;                
+                }
         }
       }
       .action-button-wrapper {
@@ -316,11 +398,42 @@ header{
             .send-btn{
                 display: none;
             }
+            .icon img{
+                @media screen and (min-width: 576px) {
+                    width: 15px;                
+                }
+                @media screen and (min-width: 768px) {
+                    width: 20px;                 
+                }
+                @media screen and (min-width: 992px) {
+                    width: 25px;                
+                }
+            }
       }
     }
   }
+}
+.default-message{
+    color: #acacac;
+    font-size: 20px;
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+    color: #848484;
+    text-align: center;
+    margin-top: 300px;
+        @media screen and (min-width: 576px) {
+            font-size: 20px;
+        }
+        @media screen and (min-width: 768px) {
+            font-size: 22px;
+        }
+        @media screen and (min-width: 992px) {
+            font-size: 24px;
+        }
 
 }
-
 
 `
