@@ -3,7 +3,7 @@
 
   <h3 align="center">Telegram Clone</h3>
   <p align="center">
-  <image align="center" width="200" src='./screenshot/LOGO TELEGRAM.png' />
+  <image align="center" src='./screenshot/LOGO TELEGRAM.png' />
   </p>
 
   <p align="center">
@@ -68,8 +68,8 @@ git clone https://github.com/Nisanisa7/React-Telegram.git
 2. Install NPM packages
 ```sh
 npm install
-<image width="200" src='./screenshot/package.png>
 ```
+<image src='./screenshot/package.png>
 3. Add .env file at root folder project, and add following
 ```sh
 REACT_APP_BACKEND_API =L=[Backend API]
@@ -82,24 +82,11 @@ REACT_APP_BACKEND_API =L=[Backend API]
 
 <p align='center'>
   <span>
-    <image width="200" src='./screenshot/home.png' />
-    <image width="200" src='./screenshot/homechat.png' />
-    <image width="200" src='./screenshotprofile paghe.png' />
+    <image src='./screenshot/home.png' />
+    <image src='./screenshot/homechat.png' />
+    <image src='./screenshot/profile paghe.png' />
 
      
-
-<!-- CONTRIBUTING -->
-## Contributing
-
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-
 
 ## Related Project
 * [`Frontend-HiringChannelApp-ReactNative`](https://github.com/AdmiralYuuShi/HiringChannelApp-ReactNative)
