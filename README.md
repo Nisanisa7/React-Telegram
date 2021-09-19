@@ -1,74 +1,120 @@
-# Project name
+<br />
+<p align="center">
 
-<!--- These are examples. See https://shields.io for others or to customize this set of shields. You might want to include dependencies, project status and licence info here --->
-![GitHub repo size](https://img.shields.io/github/repo-size/scottydocs/README-template.md)
-![GitHub contributors](https://img.shields.io/github/contributors/scottydocs/README-template.md)
-![GitHub stars](https://img.shields.io/github/stars/scottydocs/README-template.md?style=social)
-![GitHub forks](https://img.shields.io/github/forks/scottydocs/README-template.md?style=social)
-![Twitter Follow](https://img.shields.io/twitter/follow/scottydocs?style=social)
+  <h3 align="center">Telegram Clone</h3>
+  <p align="center">
+    <image align="center" width="200" src='./screenshot/LOGO TELEGRAM.png />
+  </p>
 
-Project name is a `<utility/tool/feature>` that allows `<insert_target_audience>` to do `<action/task_it_does>`.
+  <p align="center">
+    <br />
+    <a href="https://github.com/AdmiralYuuShi/Frontend-HiringChannelApp-WithRedux"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="http://www.hiring-channel.com.s3-website-us-east-1.amazonaws.com/">View Demo</a>
+    ·
+    <a href="https://github.com/AdmiralYuuShi/Frontend-HiringChannelApp-WithRedux/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/AdmiralYuuShi/Frontend-HiringChannelApp-WithRedux/issues">Request Feature</a>
+  </p>
+</p>
 
-Additional line of information text about what the project does. Your introduction should be around 2 or 3 sentences. Don't go overboard, people won't read it.
 
-## Prerequisites
 
-Before you begin, ensure you have met the following requirements:
-<!--- These are just example requirements. Add, duplicate or remove as required --->
-* You have installed the latest version of `<coding_language/dependency/requirement_1>`
-* You have a `<Windows/Linux/Mac>` machine. State which OS is supported/which is not.
-* You have read `<guide/link/documentation_related_to_project>`.
+<!-- TABLE OF CONTENTS -->
+## Table of Contents
 
-## Installing <project_name>
+* [About the Project](#about-the-project)
+  * [Built With](#built-with)
+* [Getting Started](#getting-started)
+  * [Prerequisites](#prerequisites)
+  * [Installation](#installation)
+* [Screenshots](#screenshots)
+* [Related Project](#related-project-backend)
+* [Contact](#contact)
 
-To install <project_name>, follow these steps:
 
-Linux and macOS:
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+
+
+The Hiring Channel Web is a Website that contains data from Company and Engineer, which is made for Engineers to enter their profiles so that Companies can searching for Engineers that match their specifications.
+
+### Built With
+
+* [ReactJs](https://reactjs.org/)
+* [React Bootstrap](https://react-bootstrap.github.io/)
+
+
+<!-- GETTING STARTED -->
+## Getting Started
+
+### Prerequisites
+
+This is an example of how to list things you need to use the software and how to install them.
+
+* [nodejs](https://nodejs.org/en/download/)
+
+### Installation
+
+1. Clone the repo
+```sh
+git clone https://github.com/AdmiralYuuShi/Frontend-HiringChannelApp-WithRedux.git
 ```
-<install_command>
+2. Install NPM packages
+```sh
+npm install
+```
+3. Add .env file at root folder project, and add following
+```sh
+REACT_APP_API_URL=[Backend API]
 ```
 
-Windows:
-```
-<install_command>
-```
-## Using <project_name>
 
-To use <project_name>, follow these steps:
 
-```
-<usage_example>
-```
+<!-- ROADMAP -->
+## Screenshots
 
-Add run commands and examples you think users will find useful. Provide an options reference for bonus points!
+<p align='center'>
+  <span>
+      <image width="200" src='./screenshots/hca-register.png' />
+      <image width="200" src='./screenshots/hca-login.png' />
+      <image width="200" src='./screenshots/hca-home.png' />
+      <image width="200" src='./screenshots/hca-engineers-10.png' />
+      <image width="200" src='./screenshots/hca-companies.png' />
+      <image width="200" src='./screenshots/hca-create-profile-engineer.png' />
+      <image width="200" src='./screenshots/hca-create-company-profile.png' />
+      <image width="200" src='./screenshots/hca-profile-engineer.png' />
+      <image width="200" src='./screenshots/hca-profile-company.png' />
+      <image width="200" src='./screenshots/hca-edit-profile-engineer.png' />
+      <image width="200" src='./screenshots/hca-edit-profile-company.png' />
+     
 
-## Contributing to <project_name>
-<!--- If your README is long or you have some specific process or steps you want contributors to follow, consider creating a separate CONTRIBUTING.md file--->
-To contribute to <project_name>, follow these steps:
+<!-- CONTRIBUTING -->
+## Contributing
 
-1. Fork this repository.
-2. Create a branch: `git checkout -b <branch_name>`.
-3. Make your changes and commit them: `git commit -m '<commit_message>'`
-4. Push to the original branch: `git push origin <project_name>/<location>`
-5. Create the pull request.
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-Alternatively see the GitHub documentation on [creating a pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-## Contributors
 
-Thanks to the following people who have contributed to this project:
 
-* [@scottydocs](https://github.com/scottydocs) 📖
-* [@cainwatson](https://github.com/cainwatson) 🐛
-* [@calchuchesta](https://github.com/calchuchesta) 🐛
+## Related Project
+* [`Frontend-HiringChannelApp-ReactNative`](https://github.com/AdmiralYuuShi/HiringChannelApp-ReactNative)
+* [`Backend-HiringChannelApp`](https://github.com/AdmiralYuuShi/Backend-HiringChannelApp)
 
-You might want to consider using something like the [All Contributors](https://github.com/all-contributors/all-contributors) specification and its [emoji key](https://allcontributors.org/docs/en/emoji-key).
 
+<!-- CONTACT -->
 ## Contact
 
-If you want to contact me you can reach me at <your_email@address.com>.
+My Email : hapidmochj12@gmail.com
 
-## License
-<!--- If you're not sure which open license to use see https://choosealicense.com/--->
+Project Link: [https://github.com/AdmiralYuuShi/Frontend-HiringChannelApp-WithRedux](https://github.com/AdmiralYuuShi/Frontend-HiringChannelApp-WithRedux)
 
-This project uses the following license: [<license_name>](<link>).
+
+
