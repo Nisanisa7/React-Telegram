@@ -11,7 +11,7 @@
     <a href="https://github.com/Nisanisa7/React-Telegram"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://vercel.com/nisanisa7/react-telegram/CDrYqrNzUV9FQPYX9EUH6W15AcMX">View Demo</a>
+    <a href="https://react-telegram-mdmsg8wfq-nisanisa7.vercel.app/">View Demo</a>
     ·
     <a href="https://github.com/Nisanisa7/React-Telegram/issues">Report Bug</a>
     ·
@@ -45,7 +45,10 @@ Telegram clone is a chatting aplication. that help you to communicate with your 
 
 * [ReactJs](https://reactjs.org/)
 * [React Bootstrap](https://react-bootstrap.github.io/)
-
+* [Styled Component](https://styled-components.com/)
+* [Socket io](https://socket.io/docs/v4/client-installation/)
+* [Formik](https://formik.org/)
+* [yup](https://www.npmjs.com/package/yup)
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -65,6 +68,7 @@ git clone https://github.com/Nisanisa7/React-Telegram.git
 2. Install NPM packages
 ```sh
 npm install
+<image width="200" src='./screenshot/package.png>
 ```
 3. Add .env file at root folder project, and add following
 ```sh
@@ -78,7 +82,7 @@ REACT_APP_BACKEND_API =L=[Backend API]
 
 <p align='center'>
   <span>
-      <image width="200" src='./screenshot/home.png' />
+    <image width="200" src='./screenshot/home.png' />
     <image width="200" src='./screenshot/homechat.png' />
     <image width="200" src='./screenshotprofile paghe.png' />
 
