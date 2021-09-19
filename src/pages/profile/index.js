@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components'
 import Swal from 'sweetalert2';
-import { ChartStatus, ChatLogo, DefaultAvatar, DeviceLogo, Lock, Union, Yennefer } from '../../assets';
+import { DefaultAvatar, Lock } from '../../assets';
 import { Button, Inputfield, Sidebar } from '../../components/atoms';
 import { getCurrentProfile, updateProfile } from '../../config/Redux/actions/authAction';
 import Buttonboo from "react-bootstrap/Button";
@@ -20,7 +20,6 @@ const Profile = () => {
     const [preview, setImagePreview] = useState(null)
     const [errImage, setErrImage] = useState(false)
     const [errImageType, setErrImageType] = useState(false)
-    const [reset, setReset] = useState(true)
     console.log(dataUser.token);
 
     useEffect(() => {
@@ -30,10 +29,6 @@ const Profile = () => {
         history.push('/')
     }
 
-    // useEffect(() => {
-    //   dispatch(getCurrentProfile(dataUser.idUser))
-    // }, [reset])
-    //showing all hidden components
     const [showing, setShowing] = useState(false)
     const [showForm, setShowForm] = useState(false)
 
@@ -121,7 +116,7 @@ const Profile = () => {
                         </div>
                         <div class="list-group ">
                             <h5>Settings</h5>
-                            <a href="#" onClick={handleShow} class="list-group-item list-group-item-action border-0 ">
+                            <a href="" onClick={handleShow} class="list-group-item list-group-item-action border-0 ">
                                 <img src={Lock} alt="" />
                                 <span>Delete Account</span>
                             </a>

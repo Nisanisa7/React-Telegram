@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import PropTypes from 'prop-types';
 import { DefaultAvatar, Emoticon, FileLogo, Plus, ProfileMenu } from '../../../assets';
 import { Button } from '../../atoms';
 

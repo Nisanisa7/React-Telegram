@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import {useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { Button, HeaderAuth, Inputfield } from '../../components/atoms';
 import { registerUser } from '../../config/Redux/actions/authAction';
@@ -77,7 +77,7 @@ const Register = () => {
                     <h6>Register with</h6>
                     <Button classname="button" color="outer-primary">
                         <span>
-                            <img src="https://img.icons8.com/color/16/000000/google-logo.png" />
+                            <img src="https://img.icons8.com/color/16/000000/google-logo.png" alt="" />
                         </span>
                         Google
                     </Button>

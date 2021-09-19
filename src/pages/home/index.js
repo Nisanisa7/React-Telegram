@@ -2,14 +2,12 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { DefaultAvatar, Emoticon, FileLogo, Plus, ProfileMenu } from '../../assets'
 import { Button } from '../../components/atoms'
 import CardChat from '../../components/atoms/cardChat'
 import Sidebar from '../../components/atoms/sidebar'
-import { ModalWindow, OpenModal, UseModal } from '../../components/molecules'
-import ModalMenu from '../../components/molecules/modalMenu'
 import { toastify } from '../../utils';
 import { HomeStyles } from './Styled'
 import moment from 'moment'
@@ -24,7 +22,6 @@ const Home = ({ socket }) => {
     const [messages, setMessages] = useState([])
     const [search, setSearch] = useState("")
     const username = localStorage.getItem('username');
-    const name = localStorage.getItem('name');
     const avatar = localStorage.getItem('avatar');
  
     useEffect(() => {
@@ -45,7 +42,6 @@ const Home = ({ socket }) => {
             })
         }
     }, [socket, showFriend])
-    //get friend
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_BACKEND_API}/user`, {
             headers: {
@@ -62,7 +58,6 @@ const Home = ({ socket }) => {
     }, [])
     useEffect(() => {
         if (showFriend) {
-            // console.log(showFriend.idUser);
             axios.get(`http://localhost:4000/v1/messages/${showFriend.idUser}`, {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('token')}`
@@ -129,7 +124,7 @@ const Home = ({ socket }) => {
                         </div>
                         <div className="chat">
                             {friends.filter((friend)=>{
-                                if(search == ""){
+                                if(search === ""){
                                     return friend
                                 } else if(friend.name.toLowerCase().includes(search.toLocaleLowerCase())){
                                     return friend
@@ -163,7 +158,6 @@ const Home = ({ socket }) => {
                                         <>
                                             <div className={`chat friends ${showFriend.idUser === item.receiver_id ? 'me' : ''}`}>
                                                 {showFriend.idUser === item.receiver_id ? <p className="time-msg">{moment(item.createdAt).format("LT")}</p> : ''}
-                                                {/* <img src={showFriend.idUser === item.receiver_id ? avatar: '' } alt="" /> */}
                                                 {showFriend.idUser !== item.receiver_id ? <img src={showFriend.avatar ? showFriend.avatar : DefaultAvatar} className="img" alt="" /> : ''}
                                                 <p className={`chat-text ${showFriend.idUser === item.receiver_id ? 'chat-me' : ''}`}>{item.message}</p>
                                                 {showFriend.idUser !== item.receiver_id ? <p className="time-msg-friend">{moment(item.createdAt).format("LT")}</p> : ''}

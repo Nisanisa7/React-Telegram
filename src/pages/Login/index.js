@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
@@ -66,7 +66,7 @@ const Login = ({setSocket}) => {
                     <h6>Login with</h6>
                     <Button classname="button" color="outer-primary">
                         <span>
-                            <img src="https://img.icons8.com/color/16/000000/google-logo.png" />
+                            <img src="https://img.icons8.com/color/16/000000/google-logo.png" alt=""/>
                         </span>
                         Google
                     </Button>

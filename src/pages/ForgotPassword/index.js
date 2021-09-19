@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { Button, HeaderAuth, Inputfield } from '../../components/atoms';
 
 const ForgotPassword = () => {

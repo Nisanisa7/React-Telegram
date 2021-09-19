@@ -26,8 +26,6 @@ const Routes = () => {
     const [socket, setSocket] = useState(null)
     const setupSocket = ()=>{
       const token = localStorage.getItem('token')
-      
-      // ini saya gunakan ketika browser di refresh
       if(token && !socket){
         const resultSocket = io('http://localhost:4000',{
           query: {
