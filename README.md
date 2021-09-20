@@ -39,7 +39,7 @@
 ## About The Project
 
 
-Telegram clone is a chatting aplication. that help you to communicate with your friends
+Telegram clone is a chatting aplication, that help you to communicate with your friends
 
 ### Built With
 
