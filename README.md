@@ -44,6 +44,7 @@ Telegram clone is a chatting aplication. that help you to communicate with your 
 ### Built With
 
 * [ReactJs](https://reactjs.org/)
+* [Redux](https://redux.js.org/)
 * [React Bootstrap](https://react-bootstrap.github.io/)
 * [Styled Component](https://styled-components.com/)
 * [Socket io](https://socket.io/docs/v4/client-installation/)
@@ -61,7 +62,7 @@ This is an example of how to list things you need to use the software and how to
 
 ### Installation
 
-1. Clone the repo
+1. Clone these 2 repos (Frontend & Backend)
 ```sh
 git clone https://github.com/Nisanisa7/React-Telegram.git
 ```
@@ -69,12 +70,13 @@ git clone https://github.com/Nisanisa7/React-Telegram.git
 ```sh
 npm install
 ```
-<span>
-    <image src='./screenshot/package.png' />
-<br/>
 3. Add .env file at root folder project, and add following
 ```sh
 REACT_APP_BACKEND_API =L=[Backend API]
+```
+4. Start website
+```sh
+npm start
 ```
 
 
@@ -84,21 +86,21 @@ REACT_APP_BACKEND_API =L=[Backend API]
 
 <p align='center'>
   <span>
-    <image src='./screenshot/home.png' />
-    <image src='./screenshot/homechat.png' />
-    <image src='./screenshot/profile paghe.png' />
+    <image width="350" src='./screenshot/home.png' />
+    <image width="350" src='./screenshot/homechat.png' />
+    <image width="350" src='./screenshot/profile paghe.png' />
 
      
 
 ## Related Project
-* [`Frontend-HiringChannelApp-ReactNative`](https://github.com/AdmiralYuuShi/HiringChannelApp-ReactNative)
-* [`Backend-HiringChannelApp`](https://github.com/AdmiralYuuShi/Backend-HiringChannelApp)
+* [`Frontend-React-Telegram`](https://github.com/Nisanisa7/React-Telegram)
+* [`Backend-api-Telegram`](https://github.com/Nisanisa7/api-Telegram)
 
 
 <!-- CONTACT -->
 ## Contact
 
-My Email : hapidmochj12@gmail.com
+My Email : mahuwarni.hyinka7@gmail.com
 
 Project Link: [https://github.com/AdmiralYuuShi/Frontend-HiringChannelApp-WithRedux](https://github.com/AdmiralYuuShi/Frontend-HiringChannelApp-WithRedux)
 
