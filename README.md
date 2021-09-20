@@ -94,7 +94,7 @@ npm start
 
 ## Related Project
 * [`Frontend-React-Telegram`](https://github.com/Nisanisa7/React-Telegram)
-* [`Backend-api-Telegram`](https://github.com/Nisanisa7/api-Telegram)
+* [`Backend-api-Telegram`](https://github.com/Nisanisa7/Telegram-api)
 
 
 <!-- CONTACT -->
