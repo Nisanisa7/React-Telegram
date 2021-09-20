@@ -69,7 +69,9 @@ git clone https://github.com/Nisanisa7/React-Telegram.git
 ```sh
 npm install
 ```
-<image src='./screenshot/package.png>
+<span>
+    <image src='./screenshot/package.png' />
+<br/>
 3. Add .env file at root folder project, and add following
 ```sh
 REACT_APP_BACKEND_API =L=[Backend API]
