@@ -72,7 +72,7 @@ npm install
 ```
 3. Add .env file at root folder project, and add following
 ```sh
-REACT_APP_BACKEND_API =L=[Backend API]
+REACT_APP_BACKEND_API = [Backend API]
 ```
 4. Start website
 ```sh
@@ -86,9 +86,9 @@ npm start
 
 <p align='center'>
   <span>
-    <image width="350" src='./screenshot/home.png' />
-    <image width="350" src='./screenshot/homechat.png' />
-    <image width="350" src='./screenshot/profile paghe.png' />
+    <image width="500" src='./screenshot/home.png' />
+    <image width="500" src='./screenshot/homechat.png' />
+    <image width="500" src='./screenshot/profile paghe.png' />
 
      
 
@@ -101,8 +101,6 @@ npm start
 ## Contact
 
 My Email : mahuwarni.hyinka7@gmail.com
-
-Project Link: [https://github.com/AdmiralYuuShi/Frontend-HiringChannelApp-WithRedux](https://github.com/AdmiralYuuShi/Frontend-HiringChannelApp-WithRedux)
 
 
 
