@@ -86,9 +86,9 @@ npm start
 
 <p align='center'>
   <span>
-    <image width="500" src='./screenshot/home.png' />
-    <image width="500" src='./screenshot/homechat.png' />
-    <image width="500" src='./screenshot/profile paghe.png' />
+    <image width="750" src='./screenshot/home.png' />
+    <image width="750" src='./screenshot/homechat.png' />
+    <image width="750" src='./screenshot/profile paghe.png' />
 
      
 
