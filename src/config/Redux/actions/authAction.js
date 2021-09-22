@@ -109,7 +109,6 @@ export const updateProfile = (data, token, idUser, ) => (dispatch) =>{
     const formData = new FormData()
     console.log(data);
     formData.append('name', data.name);
-    // formData.append('username', data.username);
     formData.append('status_bio', data.status_bio);
     formData.append('phone_number', data.phone_number);
     formData.append('avatar', data.avatar);
@@ -122,8 +121,18 @@ export const updateProfile = (data, token, idUser, ) => (dispatch) =>{
     })
     .then((res)=>{
       const resData = res.data.data
+      // console.log('action nya', resData);
+      localStorage.setItem('avatar', resData.avatar)
 
-      dispatch = ({action:'UPDATE_USER', payload: resData})
+      const dataUser = {
+        data: res.data.data,
+        error: res.data.error,
+        message: res.data.message,
+        status: res.data.status,
+    }
+    console.log(dataUser, 'datauser');
+
+      dispatch({type:'UPDATE_USER', payload: dataUser})
       Swal.fire(
         'Update Success',
         'update profile success',
@@ -134,7 +143,7 @@ export const updateProfile = (data, token, idUser, ) => (dispatch) =>{
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: err.response.data.message,
+        text: err.response?.data?.message,
       })
     })
 }
@@ -143,7 +152,7 @@ export const  getCurrentProfile = (idUser) => (dispatch) =>{
       .then((res)=>{
         const resData = res.data.data
 
-        dispatch = ({action:'GET_USER', payload: resData})
+        dispatch({action:'GET_USER', payload: resData})
         Swal.fire(
           'Update Success',
           'update profile success',
@@ -154,7 +163,7 @@ export const  getCurrentProfile = (idUser) => (dispatch) =>{
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: err.response.data.message,
+          text: err.response?.data.message,
         })
       })
 }

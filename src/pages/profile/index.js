@@ -62,7 +62,7 @@ const Profile = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(updateProfile(dataUser, dataUser.token, dataUser.idUser, handleInputImage))
-        dispatch(getCurrentProfile(dataUser.idUser))
+        // dispatch(getCurrentProfile(dataUser.idUser))
 
     }
     const handleLogout = () => {

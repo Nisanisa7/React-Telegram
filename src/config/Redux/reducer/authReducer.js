@@ -5,6 +5,7 @@ const initialState = {
     status: null,
 }
 const AuthReducer = (state = initialState, action) => {
+    console.log(action)
     switch (action.type) {
         case 'LOGIN':
             return {
@@ -24,7 +25,14 @@ const AuthReducer = (state = initialState, action) => {
             }
         case 'UPDATE_USER':
             return {
-                profile: action.payload
+                ...state,
+                profile:{
+                    ...state.profile,
+                    data:{
+                        ...state.profile.data,
+                        ...action.payload.data
+                    }
+                } 
             }
         case 'CHANGE_VALUE':
             console.log('halo', state.profile.data);
