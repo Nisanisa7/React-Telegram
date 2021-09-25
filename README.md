@@ -88,7 +88,8 @@ npm start
   <span>
     <image width="750" src='./screenshot/Login.jpeg' />
     <image width="750" src='./screenshot/Register.jpeg' />
-    <image width="750" src='./screenshot/profile paghe.png' />
+    <image width="750" src='./screenshot/Homecha.jpeg' />
+     <image width="750" src='./screenshot/Profile.jpeg' />
 
      
 
