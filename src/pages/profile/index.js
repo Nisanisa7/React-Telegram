@@ -88,7 +88,7 @@ const Profile = () => {
                     <Sidebar className="sidebar">
                         <div className="header-wrapper">
                             <Button className="btn" color="transparant" onClick={handleBack}>
-                                <i class="fa fa-chevron-left fa-2x"></i>
+                                <i className="fa fa-chevron-left fa-2x"></i>
                             </Button>
                             <h4>{dataUser.username}</h4>
                         </div>
@@ -100,7 +100,7 @@ const Profile = () => {
                                 {dataUser.name}
                             </div>
                             <div className="username">
-                                {dataUser.username} <i onClick={() => { setShowForm(!showForm) }} class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                {dataUser.username} <i onClick={() => { setShowForm(!showForm) }} className="fa fa-pencil-square-o" aria-hidden="true"></i>
                             </div>
                         </div>
                         <div className="contact">
@@ -114,14 +114,14 @@ const Profile = () => {
                             <label htmlFor="">Bio</label>
                             <div className="hidden">hidden</div>
                         </div>
-                        <div class="list-group ">
+                        <div className="list-group ">
                             <h5>Settings</h5>
-                            <a href="" onClick={handleShow} class="list-group-item list-group-item-action border-0 ">
+                            <a href="" onClick={handleShow} className="list-group-item list-group-item-action border-0 ">
                                 <img src={Lock} alt="" />
                                 <span>Delete Account</span>
                             </a>
-                            <a href="#" onClick={handleLogout} class="list-group-item list-group-item-action border-0 ">
-                                <i class="fa fa-sign-out fa-lg" aria-hidden="true"></i>
+                            <a href="#" onClick={handleLogout} className="list-group-item list-group-item-action border-0 ">
+                                <i className="fa fa-sign-out fa-lg" aria-hidden="true"></i>
                                 <span>Logout</span>
                             </a>
                         </div>
@@ -264,8 +264,7 @@ const Styles = styled.div`
            font-size: 24px;
            line-height: 28px;
            padding-top: 10px;
-           color: #7E98DF;
-         
+           color: #7E98DF;      
            
         }
     }
@@ -299,12 +298,36 @@ const Styles = styled.div`
                 letter-spacing: -0.165px;
                 color: #232323;
                 padding-bottom: 7px;
+                @media screen and (min-width: 576px) {
+                    font-size: 15px;
+                    }
+                @media screen and (min-width: 768px) {
+                    font-size: 18px;
+                    }
+                @media screen and (min-width: 992px) {
+                    font-size: 20px;
+                    }
+                @media screen and (min-width: 1200px) {
+                    font-size: 22px;
+                    }
             }
             h5{
                 font-family: 'Rubik';
                 font-size: 19px;
                 line-height: 23px;
                 color: #232323;
+                @media screen and (min-width: 576px) {
+                    font-size: 16px;
+                    }
+                @media screen and (min-width: 768px) {
+                    font-size: 17px;
+                    }
+                @media screen and (min-width: 992px) {
+                    font-size: 19px;
+                    }
+                @media screen and (min-width: 1200px) {
+                    font-size: 19px;
+                    }
             }
             .username{
                 font-family: 'Rubik';
@@ -313,6 +336,18 @@ const Styles = styled.div`
                 font-size: 16px;
                 line-height: 19px;
                 color: #848484;
+                @media screen and (min-width: 576px) {
+                    font-size: 13px;
+                    }
+                @media screen and (min-width: 768px) {
+                    font-size: 14px;
+                    }
+                @media screen and (min-width: 992px) {
+                    font-size: 15px;
+                    }
+                @media screen and (min-width: 1200px) {
+                    font-size: 16px;
+                    }
                 letter-spacing: 1.335px;
                 .fa-pencil-square-o{
                     cursor: pointer;
@@ -331,6 +366,18 @@ const Styles = styled.div`
                 line-height: 19px;
                 letter-spacing: 1.335px;
                 color: #232323;
+                @media screen and (min-width: 576px) {
+                    font-size: 13px;
+                    }
+                @media screen and (min-width: 768px) {
+                    font-size: 14px;
+                    }
+                @media screen and (min-width: 992px) {
+                    font-size: 15px;
+                    }
+                @media screen and (min-width: 1200px) {
+                    font-size: 16px;
+                    }
             }
             .phone-change{
                 font-family: 'Rubik';
@@ -341,6 +388,18 @@ const Styles = styled.div`
                 letter-spacing: -0.17px;
                 color: #7E98DF;
                 cursor: pointer;
+                @media screen and (min-width: 576px) {
+                    font-size: 13px;
+                    }
+                @media screen and (min-width: 768px) {
+                    font-size: 14px;
+                    }
+                @media screen and (min-width: 992px) {
+                    font-size: 15px;
+                    }
+                @media screen and (min-width: 1200px) {
+                    font-size: 16px;
+                    }
             }
             .hidden{
                 visibility: hidden;
@@ -356,6 +415,18 @@ const Styles = styled.div`
                 font-size: 16px;
                 line-height: 181%;
                 color: #232323;
+                @media screen and (min-width: 576px) {
+                    font-size: 13px;
+                    }
+                @media screen and (min-width: 768px) {
+                    font-size: 14px;
+                    }
+                @media screen and (min-width: 992px) {
+                    font-size: 15px;
+                    }
+                @media screen and (min-width: 1200px) {
+                    font-size: 16px;
+                    }
             }
             label{
                 font-family: 'Rubik';
@@ -363,6 +434,18 @@ const Styles = styled.div`
                 font-size: 16px;
                 line-height: 19px;
                 color: #848484;
+                @media screen and (min-width: 576px) {
+                    font-size: 13px;
+                    }
+                @media screen and (min-width: 768px) {
+                    font-size: 14px;
+                    }
+                @media screen and (min-width: 992px) {
+                    font-size: 15px;
+                    }
+                @media screen and (min-width: 1200px) {
+                    font-size: 16px;
+                    }
             }
             .hidden{
                 visibility: hidden;
@@ -376,9 +459,33 @@ const Styles = styled.div`
                 font-weight: normal;
                 font-size: 17px;
                 line-height: 20px;
+                @media screen and (min-width: 576px) {
+                    font-size: 14px;
+                    }
+                @media screen and (min-width: 768px) {
+                    font-size: 15px;
+                    }
+                @media screen and (min-width: 992px) {
+                    font-size: 16px;
+                    }
+                @media screen and (min-width: 1200px) {
+                    font-size: 17px;
+                    }
                 color: #7E98DF;
                     span{
                         padding-left: 30px;
+                        @media screen and (min-width: 576px) {
+                            visibility: hidden;
+                            }
+                        @media screen and (min-width: 768px) {
+                            padding-left: 30px;
+                            }
+                        @media screen and (min-width: 992px) {
+                            padding-left: 30px;
+                            }
+                        @media screen and (min-width: 1200px) {
+                            padding-left: 30px;
+                            }
                     }
             }
     
@@ -431,7 +538,7 @@ const Styles = styled.div`
 
     }
 .wrapper-form{
-    width: 700px;
+    width: 85%;
     background: #FFFFFF;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     border-radius: 30px;
@@ -461,6 +568,9 @@ const Styles = styled.div`
             height: 100%;
             border-radius: 30px;
             }
+        .error{
+            color: red;
+        }
         }
         .profile-btn{
             position: relative;
@@ -505,7 +615,7 @@ const Styles = styled.div`
     }
     .button{
         margin-top: 20px;
-        width: 250px;
+        width: 100%;
         height: 45px;
     }
 }

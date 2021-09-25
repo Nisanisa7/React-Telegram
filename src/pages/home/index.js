@@ -145,7 +145,7 @@ const Home = ({ socket }) => {
                                 </div>
                                 <div className="user-profile">
                                     <div className="text-heading">{showFriend.name}</div>
-                                    <p className="text">Status</p>
+                                    <p className="text">{showFriend.status_bio}</p>
                                 </div>
                                 <div className="toggle-button">
                                     <Button className="btn" color="transparant">
