@@ -11,7 +11,7 @@
     <a href="https://github.com/Nisanisa7/React-Telegram"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://react-telegram-mdmsg8wfq-nisanisa7.vercel.app/">View Demo</a>
+    <a href="https://telegramku.vercel.app//">View Demo</a>
     ·
     <a href="https://github.com/Nisanisa7/React-Telegram/issues">Report Bug</a>
     ·
