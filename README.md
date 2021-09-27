@@ -39,7 +39,8 @@
 ## About The Project
 
 
-Telegram clone is a chatting aplication, that help you to communicate with your friends
+Telegram clone is a chatting aplication, that help you to communicate with your friends trough private chat.
+With this Aplication you can do a private chat, search a user, and update your profile.
 
 ### Built With
 
