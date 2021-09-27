@@ -7,7 +7,6 @@ export const loginUser = (data, history, setSocket) => (dispatch)=> {
     axios.post(`${process.env.REACT_APP_BACKEND_API}/auth/login`, data)
     .then((res)=>{
       
-        //  const result = res.data.data
         const token = res.data.data.token;
         const idUser = res.data.data.idUser;
         const username = res.data.data.username;
@@ -73,7 +72,7 @@ export const loginUser = (data, history, setSocket) => (dispatch)=> {
 }
 
 export const registerUser = (data, history) =>(dispatch)=>{
-    axios.post(`${process.env.REACT_APP_BACKEND_API}/auth/register`, data)
+    axios.post(`https://telegramclone.herokuapp.com/v1/auth/register`, data)
     .then((result)=>{
         Swal.fire(
             'Register Success!!!',
