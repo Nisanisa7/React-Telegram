@@ -58,7 +58,7 @@ const Home = ({ socket }) => {
     }, [])
     useEffect(() => {
         if (showFriend) {
-            axios.get(`http://localhost:4000/v1/messages/${showFriend.idUser}`, {
+            axios.get(`${process.env.REACT_APP_BACKEND_API}/messages/${showFriend.idUser}`, {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('token')}`
                 }

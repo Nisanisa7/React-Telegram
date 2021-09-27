@@ -45,7 +45,7 @@ export const loginUser = (data, history, setSocket) => (dispatch)=> {
         localStorage.setItem('status_bio', status_bio);
         localStorage.setItem('avatar', avatar);
         localStorage.setItem('status', status);
-        const resultSocket = io('http://localhost:4000', {
+        const resultSocket = io(`${process.env.BACKEND_API}`, {
           query: {
             token: localStorage.getItem('token'),
           },
@@ -73,7 +73,7 @@ export const loginUser = (data, history, setSocket) => (dispatch)=> {
 }
 
 export const registerUser = (data, history) =>(dispatch)=>{
-    axios.post('http://localhost:4000/v1/auth/register', data)
+    axios.post(`${process.env.REACT_APP_BACKEND_API}/auth/register`, data)
     .then((result)=>{
         Swal.fire(
             'Register Success!!!',
