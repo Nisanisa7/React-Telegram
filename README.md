@@ -11,7 +11,7 @@
     <a href="https://github.com/Nisanisa7/React-Telegram"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://react-telegram-mdmsg8wfq-nisanisa7.vercel.app/">View Demo</a>
+    <a href="https://telegramku.vercel.app//">View Demo</a>
     ·
     <a href="https://github.com/Nisanisa7/React-Telegram/issues">Report Bug</a>
     ·
@@ -39,7 +39,8 @@
 ## About The Project
 
 
-Telegram clone is a chatting aplication, that help you to communicate with your friends
+Telegram clone is a chatting aplication, that help you to communicate with your friends trough private chat.
+With this Aplication you can do a private chat, search a user, and update your profile.
 
 ### Built With
 
