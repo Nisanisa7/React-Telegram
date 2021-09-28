@@ -82,6 +82,7 @@ const Home = ({ socket }) => {
             setMessage('')
         }
     }
+    console.log(messages, 'data mesage');
 
     return (
         <HomeStyles>

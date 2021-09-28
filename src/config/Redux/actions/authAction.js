@@ -44,11 +44,12 @@ export const loginUser = (data, history, setSocket) => (dispatch)=> {
         localStorage.setItem('status_bio', status_bio);
         localStorage.setItem('avatar', avatar);
         localStorage.setItem('status', status);
-        const resultSocket = io(`${process.env.BACKEND_API}`, {
+        localStorage.setItem('status', token);
+        const resultSocket = io(`${process.env.BACKEND_BASE}`, {
           query: {
             token: localStorage.getItem('token'),
           },
-        });
+        });;
         setSocket(resultSocket);
     
         
@@ -72,7 +73,7 @@ export const loginUser = (data, history, setSocket) => (dispatch)=> {
 }
 
 export const registerUser = (data, history) =>(dispatch)=>{
-    axios.post(`https://telegramclone.herokuapp.com/v1/auth/register`, data)
+    axios.post(`${process.env.REACT_APP_BACKEND_API}/auth/register`, data)
     .then((result)=>{
         Swal.fire(
             'Register Success!!!',

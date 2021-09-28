@@ -9,7 +9,7 @@ import styled from 'styled-components'
 import Swal from 'sweetalert2';
 import { DefaultAvatar, Lock } from '../../assets';
 import { Button, Inputfield, Sidebar } from '../../components/atoms';
-import { getCurrentProfile, updateProfile } from '../../config/Redux/actions/authAction';
+import { updateProfile } from '../../config/Redux/actions/authAction';
 import Buttonboo from "react-bootstrap/Button";
 
 const Profile = () => {
