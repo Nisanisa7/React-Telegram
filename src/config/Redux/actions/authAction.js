@@ -45,7 +45,7 @@ export const loginUser = (data, history, setSocket) => (dispatch)=> {
         localStorage.setItem('avatar', avatar);
         localStorage.setItem('status', status);
         localStorage.setItem('status', token);
-        const resultSocket = io(`${process.env.BACKEND_BASE}`, {
+        const resultSocket = io(`${REACT_APP_BACKEND_BASE}`, {
           query: {
             token: localStorage.getItem('token'),
           },

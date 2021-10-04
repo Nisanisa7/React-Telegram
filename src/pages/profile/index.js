@@ -228,7 +228,7 @@ const Profile = () => {
                         <Buttonboo variant="secondary" onClick={handleClose}>
                             Close
                         </Buttonboo>
-                        <Buttonboo variant="danger" onClick={handleDelete}>
+                        <Buttonboo variant="danger" onClick={() => handleDelete}>
                             Delete
                         </Buttonboo>
                     </Modal.Footer>

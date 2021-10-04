@@ -27,7 +27,7 @@ const Routes = () => {
     const setupSocket = ()=>{
       const token = localStorage.getItem('token')
       if(token && !socket){
-        const resultSocket = io(`${process.env.REACT_APP_BACKEND_API}`,{
+        const resultSocket = io(`${process.env.REACT_APP_BACKEND_BASE}`,{
           query: {
             token: localStorage.getItem('token')
           }
