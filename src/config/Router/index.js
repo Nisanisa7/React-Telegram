@@ -27,7 +27,7 @@ const Routes = () => {
     const setupSocket = ()=>{
       const token = localStorage.getItem('token')
       if(token && !socket){
-        const resultSocket = io(`${process.env.REACT_APP_BACKEND_BASE}`,{
+        const resultSocket = io(`https://telegramclone.herokuapp.com`,{
           query: {
             token: localStorage.getItem('token')
           }

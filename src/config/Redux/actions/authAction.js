@@ -45,7 +45,7 @@ export const loginUser = (data, history, setSocket) => (dispatch)=> {
         localStorage.setItem('avatar', avatar);
         localStorage.setItem('status', status);
         localStorage.setItem('status', token);
-        const resultSocket = io(`${REACT_APP_BACKEND_BASE}`, {
+        const resultSocket = io(`https://telegramclone.herokuapp.com`, {
           query: {
             token: localStorage.getItem('token'),
           },
