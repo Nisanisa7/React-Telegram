@@ -50,6 +50,7 @@ const Home = ({ socket }) => {
         })
             .then((result) => {
                 const friendResult = result.data.item
+                console.log(friendResult, 'result frienmdds');
                 setFriends(friendResult)
             })
             .catch((err) => {
