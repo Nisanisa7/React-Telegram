@@ -77,7 +77,7 @@ export const registerUser = (data, history) =>(dispatch)=>{
     .then((result)=>{
         Swal.fire(
             'Register Success!!!',
-            'Please check your email to activate your Acccount!',
+            'Please login to enjoy our feature!',
             'success'
           )
           const dataUser = {
