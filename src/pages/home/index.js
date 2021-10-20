@@ -132,7 +132,7 @@ const Home = ({ socket }) => {
                                     return friend
                                 }
                             }).map((friend) => (
-                                <CardChat key={friend.idUser} onClick={() => setShowFriend(friend)} className="chat-card" avatar={friend.avatar ? friend.avatar : DefaultAvatar} username={friend.name} />
+                                <CardChat key={friend.idUser} onClick={() => setShowFriend(friend)} className="chat-card" avatar={friend.avatar ? friend.avatar : DefaultAvatar} username={friend.name ? friend.name : friend.username ? friend.username : 'Anonymous'} />
                             ))}
                             <ToastContainer />
                         </div>
