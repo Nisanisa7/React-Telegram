@@ -163,7 +163,7 @@ const Home = ({ socket }) => {
                                                 {showFriend.idUser !== item.receiver_id ? <img src={showFriend.avatar ? showFriend.avatar : DefaultAvatar} className="img" alt="" /> : ''}
                                                 <p className={`chat-text ${showFriend.idUser === item.receiver_id ? 'chat-me' : ''}`}>{item.message}</p>
                                                 {showFriend.idUser !== item.receiver_id ? <p className="time-msg-friend">{moment(item.createdAt).format("LT")}</p> : ''}
-                                                {showFriend.idUser === item.receiver_id ? <img src={avatar} className="me-img" alt="" /> : ''}
+                                                {showFriend.idUser === item.receiver_id ? <img src={avatar ? avatar : DefaultAvatar} className="me-img" alt="" /> : ''}
                                             </div>
                                         </>
                                     )}

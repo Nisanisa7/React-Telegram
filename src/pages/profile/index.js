@@ -116,10 +116,10 @@ const Profile = () => {
                         </div>
                         <div className="list-group ">
                             <h5>Settings</h5>
-                            <a href="" onClick={handleShow} className="list-group-item list-group-item-action border-0 ">
+                            <div className="list-group-item list-group-item-action border-0 ">
                                 <img src={Lock} alt="" />
-                                <span>Delete Account</span>
-                            </a>
+                                <button type="button" onClick={handleShow}>Delete Account</button>
+                            </div>
                             <a href="#" onClick={handleLogout} className="list-group-item list-group-item-action border-0 ">
                                 <i className="fa fa-sign-out fa-lg" aria-hidden="true"></i>
                                 <span>Logout</span>
@@ -474,17 +474,34 @@ const Styles = styled.div`
                     }
                     span{
                         padding-left: 30px;
-                        @media screen and (max-width: 576px) {
-                            visibility: hidden;
+                    }
+                    button{
+                        margin-left: 30px;
+                        border: none;
+                        background: none;
+                        outline: none;
+                        font-family: 'Rubik';
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 17px;
+                        line-height: 20px;
+                        cursor: pointer;
+                        color: #7E98DF;
+                        @media screen and (min-width: 576px) {
+                            font-size: 14px;
+                            margin-left: 5px;
                             }
                         @media screen and (min-width: 768px) {
-                            padding-left: 30px;
+                            font-size: 15px;
+                            margin-left: 30px;
                             }
                         @media screen and (min-width: 992px) {
-                            padding-left: 30px;
+                            font-size: 16px;
+                            margin-left: 30px;
                             }
                         @media screen and (min-width: 1200px) {
-                            padding-left: 30px;
+                            font-size: 17px;
+                            margin-left: 30px;
                             }
                     }
             }
