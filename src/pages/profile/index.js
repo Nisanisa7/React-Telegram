@@ -459,6 +459,7 @@ const Styles = styled.div`
                 font-weight: normal;
                 font-size: 17px;
                 line-height: 20px;
+                color: #7E98DF;
                 @media screen and (min-width: 576px) {
                     font-size: 14px;
                     }
@@ -471,10 +472,9 @@ const Styles = styled.div`
                 @media screen and (min-width: 1200px) {
                     font-size: 17px;
                     }
-                color: #7E98DF;
                     span{
                         padding-left: 30px;
-                        @media screen and (min-width: 576px) {
+                        @media screen and (max-width: 576px) {
                             visibility: hidden;
                             }
                         @media screen and (min-width: 768px) {

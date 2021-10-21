@@ -146,7 +146,7 @@ const Home = ({ socket }) => {
                                     <img src={showFriend.avatar ? showFriend.avatar : DefaultAvatar} alt="" />
                                 </div>
                                 <div className="user-profile">
-                                    <div className="text-heading">{showFriend.name}</div>
+                                    <div className="text-heading">{showFriend.name ? showFriend.name : showFriend.username}</div>
                                     <p className="text">{showFriend.status_bio}</p>
                                 </div>
                                 <div className="toggle-button">

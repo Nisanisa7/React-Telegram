@@ -265,7 +265,6 @@ header{
             object-fit: cover;
             display: block;
             margin-bottom:35px;   
-            background: teal;
         }
         .chat-text{
             margin-left: 20px;
