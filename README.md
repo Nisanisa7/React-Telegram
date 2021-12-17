@@ -86,11 +86,24 @@ npm start
 ## Screenshots
 
 <p align='center'>
-  <span>
-    <image width="750" src='./screenshot/Login.jpeg' />
-    <image width="750" src='./screenshot/Register.jpeg' />
-    <image width="750" src='./screenshot/Homecha.jpeg' />
-     <image width="750" src='./screenshot/Profile.jpeg' />
+   <table>
+    <tr>
+    <td>Sign-up Page</td>
+    <td>Sign-in Page</td>
+  </tr>
+  <tr>
+    <td><image src='./screenshot/Login.jpeg' width=100%></td>
+    <td><image ssrc='./screenshot/Register.jpeg' width=100%/></td>
+  </tr>
+     <tr>
+    <td>Home Page</td>
+    <td>Sign-in Page</td>
+  </tr>
+  <tr>
+    <td><image src='./screenshot/Homecha.jpeg' width=100%></td>
+    <td><image src='./screenshot/Profile.jpeg' width=100%/></td>
+  </tr>
+  </table>
 
      
 
