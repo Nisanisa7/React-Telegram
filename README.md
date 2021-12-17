@@ -93,11 +93,11 @@ npm start
   </tr>
   <tr>
     <td><image src='./screenshot/Login.jpeg' width=100%></td>
-    <td><image ssrc='./screenshot/Register.jpeg' width=100%/></td>
+    <td><image src='./screenshot/Register.jpeg' width=100%/></td>
   </tr>
      <tr>
     <td>Home Page</td>
-    <td>Sign-in Page</td>
+    <td>Home Page</td>
   </tr>
   <tr>
     <td><image src='./screenshot/Homecha.jpeg' width=100%></td>
